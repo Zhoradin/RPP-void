@@ -334,6 +334,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -1656,6 +1657,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ItemDestroyer
       objectReference: {fileID: 0}
+    - target: {fileID: 118619339811347349, guid: b11d67ef535aaaf4aa3e5997b9a3f799, type: 3}
+      propertyPath: arrangerSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 53b9397bc728b064bb5a48729bc0303e, type: 2}
+    - target: {fileID: 118619339811347349, guid: b11d67ef535aaaf4aa3e5997b9a3f799, type: 3}
+      propertyPath: destroyerSO
+      value: 
+      objectReference: {fileID: 11400000, guid: b65344700342eca4ab3b869cf97f81ff, type: 2}
     - target: {fileID: 118619339811347350, guid: b11d67ef535aaaf4aa3e5997b9a3f799, type: 3}
       propertyPath: m_RootOrder
       value: 10

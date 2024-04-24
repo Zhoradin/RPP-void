@@ -34,18 +34,25 @@ public class QuestManager : MonoBehaviour
     }
 
     // Diðer gerektiðinde kullanýlacak fonksiyonlarý ekleyebilirsiniz.
-
-    // Örnek olarak, aktif görevi TextMeshPro nesnesine yazan bir fonksiyon
     void UpdateQuestText()
     {
-        if (quests.Count > 0 && activeQuestIndex < quests.Count)
+        string newText = "";
+        for (int i = 0; i < quests.Count; i++)
         {
-            questText.text = "Aktif Görev: " + quests[activeQuestIndex].questName;
+            if (i == activeQuestIndex)
+            {
+                newText += "<b>" + "Aktif Görev: " + quests[i].questName + "</b>" + "\n";
+            }
+            else if (quests[i].isCompleted)
+            {
+                newText += "<s>" + "<color=#808080FF>" + quests[i].questName + "</s></color>\n";
+            }
+            else
+            {
+                newText += quests[i].questName + "\n";
+            }
         }
-        else
-        {
-            questText.text = "Aktif Görev: Yok";
-        }
+        questText.text = newText;
     }
 
     // Görev tamamlandýðýnda çaðrýlacak fonksiyon
