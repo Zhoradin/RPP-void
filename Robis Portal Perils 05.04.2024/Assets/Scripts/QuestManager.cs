@@ -2,89 +2,102 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
+
+public class QuestManager : MonoBehaviour
+{
+    public List<QuestList> questLists = new List<QuestList>();
+
+    // TemporaryButton isimli buton buraya atanacak
+    public Button temporaryButton;
+
+    public float textSpeed = 0.1f; // Metnin ortaya çýkma hýzýný ayarlamak için deðiþken
+
+    private Quest activeQuest; // Aktif görevi tutmak için bir deðiþken
+    private TextMeshProUGUI activeQuestTextMeshPro;
+
+    void Start()
+    {
+        // TemporaryButton butonuna týklanma olayýný ekliyoruz
+        temporaryButton.onClick.AddListener(CompleteActiveQuest);
+        SetActiveQuest(); // Baþlangýçta aktif görevi belirle
+    }
+
+    void SetActiveQuest()
+    {
+        // Quest listesini dolaþarak ilk tamamlanmamýþ görevi aktif görev olarak ayarla
+        foreach (QuestList questList in questLists)
+        {
+            foreach (Quest quest in questList.quests)
+            {
+                if (!quest.isCompleted)
+                {
+                    activeQuest = quest;
+                    // Aktif görevin textMeshPro'sý varsa, görünürlüðünü ayarla ve yazýyý yavaþça yazdýr
+                    if (activeQuest.textMeshPro != null)
+                    {
+                        activeQuestTextMeshPro = activeQuest.textMeshPro;
+                        activeQuestTextMeshPro.gameObject.SetActive(true);
+                        StartCoroutine(DisplayActiveQuest(activeQuest.questName));
+                        // Kalýn yazý tipi
+                        activeQuestTextMeshPro.fontStyle = FontStyles.Bold;
+                    }
+                    return; // Aktif görevi bulduktan sonra döngüden çýk
+                }
+            }
+        }
+    }
+
+    IEnumerator DisplayActiveQuest(string questName)
+    {
+        string displayedText = "";
+        for (int i = 0; i < questName.Length; i++)
+        {
+            displayedText += questName[i];
+            activeQuestTextMeshPro.text = displayedText;
+            yield return new WaitForSeconds(textSpeed); // Her karakter arasýnda belirtilen süre kadar bekleyin
+        }
+    }
+
+    void CompleteActiveQuest()
+    {
+        if (activeQuest != null)
+        {
+            activeQuest.isCompleted = true;
+            // Eðer activeQuest'in textMeshPro'sý varsa, görünürlüðünü ayarla ve textini deðiþtir
+            if (activeQuest.textMeshPro != null)
+            {
+                StartCoroutine(FadeText(activeQuest.textMeshPro));
+            }
+            SetActiveQuest(); // Aktif görevi tamamladýktan sonra bir sonraki aktif görevi belirle
+        }
+    }
+
+    IEnumerator FadeText(TextMeshProUGUI textMeshPro)
+    {
+        Color originalColor = textMeshPro.color;
+        Color fadedColor = originalColor;
+        fadedColor.a = 0.5f; // Griye dönüþecek alfa deðeri
+        for (float t = 0; t < 1; t += Time.deltaTime / 1) // 1 saniyede geçiþ
+        {
+            textMeshPro.color = Color.Lerp(originalColor, fadedColor, t);
+            yield return null;
+        }
+        textMeshPro.color = fadedColor;
+    }
+}
+
+[System.Serializable]
+public class QuestList
+{
+    public string listName;
+    public List<Quest> quests = new List<Quest>();
+}
 
 [System.Serializable]
 public class Quest
 {
     public string questName;
+    public TextMeshProUGUI textMeshPro;
     public bool isCompleted;
-    // Diðer gerekli alanlarý da ekleyebilirsiniz.
-}
-
-public class QuestManager : MonoBehaviour
-{
-    public List<Quest> quests = new List<Quest>();
-    public TextMeshProUGUI questText; // TextMeshPro nesnesi
-
-    private int activeQuestIndex = 0; // Aktif olan görevin index'i
-
-    void Start()
-    {
-        // Örnek olarak baþlangýçta bazý görevleri ekleyebilirsiniz.
-        AddQuest("Görev 1");
-        AddQuest("Görev 2");
-        // ...
-
-        // Baþlangýçta aktif olan görevin adýný yazdýr
-        UpdateQuestText();
-    }
-
-    void AddQuest(string questName)
-    {
-        Quest newQuest = new Quest();
-        newQuest.questName = questName;
-        newQuest.isCompleted = false;
-        quests.Add(newQuest);
-    }
-
-    void UpdateQuestText()
-    {
-        string newText = "";
-        for (int i = 0; i < quests.Count; i++)
-        {
-            if (i == activeQuestIndex)
-            {
-                newText += "<b>" + "Aktif Görev: " + quests[i].questName + "</b>" + "\n";
-            }
-            else
-            {
-                if (quests[i].isCompleted)
-                {
-                    newText += "<s><alpha=#80>" + quests[i].questName + "</alpha></s>\n";
-                }
-                else
-                {
-                    newText += quests[i].questName + "\n";
-                }
-            }
-        }
-        questText.text = newText;
-    }
-
-
-    // Görev tamamlandýðýnda çaðrýlacak fonksiyon
-    public void CompleteQuest(string questName)
-    {
-        Quest completedQuest = quests.Find(q => q.questName == questName);
-
-        if (completedQuest != null && !completedQuest.isCompleted)
-        {
-            completedQuest.isCompleted = true;
-
-            // Bir sonraki görevi aktif hale getir (eðer varsa)
-            activeQuestIndex++;
-
-            // Text'i güncelle
-            UpdateQuestText();
-        }
-    }
-
-    // TemporaryButton tarafýndan çaðrýlacak fonksiyon
-    public void OnTemporaryButtonClick()
-    {
-        if (activeQuestIndex < quests.Count)
-        {
-            CompleteQuest(quests[activeQuestIndex].questName);
-        }
-    }
 }
