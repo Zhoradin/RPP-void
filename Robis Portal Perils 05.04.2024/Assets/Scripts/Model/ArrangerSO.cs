@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(fileName = "ArrangerSO", menuName = "ScriptableObjects/ArrangerSO", order = 1)]
 public class ArrangerSO : ScriptableObject
 {
     public bool fromNewGameInventory = false;

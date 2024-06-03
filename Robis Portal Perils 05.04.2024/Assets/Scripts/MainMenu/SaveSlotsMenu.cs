@@ -72,9 +72,9 @@ public class SaveSlotsMenu : Menu
         //case - new game, and the save slot has no data
         else
         {
+            Debug.Log("Starting a new Game");
             DataPersistenceManager.instance.ChangeSelectedProfileId(saveSlot.GetProfileId());
             DataPersistenceManager.instance.NewGame();
-            DataPersistenceManager.instance.SaveGame();
             SceneManager.LoadSceneAsync("RobisRoom");
             if (arrangerSO.menuClicked)
             {

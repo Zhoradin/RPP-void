@@ -17,7 +17,7 @@ public class DataPersistenceManager : MonoBehaviour
     [SerializeField] private bool useEncryption;
 
     private GameData gameData;
-    private List<IDataPersistence> dataPersistenceObjects;
+    private List<IDataPersistence> dataPersistenceObjects = new List<IDataPersistence>();
     private FileDataHandler dataHandler;
 
     private string selectedProfileId = "";
@@ -97,6 +97,12 @@ public class DataPersistenceManager : MonoBehaviour
         if (disableDataPersistence)
         {
             return;
+        }
+
+        // Ensure dataPersistenceObjects is initialized
+        if (this.dataPersistenceObjects == null)
+        {
+            this.dataPersistenceObjects = new List<IDataPersistence>();
         }
 
         // load any saved data from a file using the data handler

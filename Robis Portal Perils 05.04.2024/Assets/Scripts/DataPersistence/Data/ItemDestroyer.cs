@@ -103,7 +103,7 @@ public class ItemDestroyer : MonoBehaviour, IDataPersistence
             arrangerSO.inGameNewGameDestroyer = false;
             arrangerSO.fromNewGameDestroyer = false;
         }
-        //TransferItemIdsFromDestroyerSO();
+        TransferItemIdsFromDestroyerSO();
     }
 
     private void OnApplicationQuit()

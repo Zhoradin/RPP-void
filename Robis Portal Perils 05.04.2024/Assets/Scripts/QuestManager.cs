@@ -6,6 +6,13 @@ using UnityEngine.UI;
 
 public class QuestManager : MonoBehaviour
 {
+    public static QuestManager instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     public List<QuestList> questLists = new List<QuestList>();
 
     // TemporaryButton isimli buton buraya atanacak
@@ -16,11 +23,22 @@ public class QuestManager : MonoBehaviour
     private Quest activeQuest; // Aktif görevi tutmak için bir deðiþken
     private TextMeshProUGUI activeQuestTextMeshPro;
 
+    public GameObject questPanel;
+    public Button questIcon;
+    public bool questPanelOpen = false;
+
     void Start()
     {
-        // TemporaryButton butonuna týklanma olayýný ekliyoruz
-        temporaryButton.onClick.AddListener(CompleteActiveQuest);
+        questPanel.SetActive(false);
         SetActiveQuest(); // Baþlangýçta aktif görevi belirle
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            OpenQuestMenu();
+        }
     }
 
     void SetActiveQuest()
@@ -59,7 +77,7 @@ public class QuestManager : MonoBehaviour
         }
     }
 
-    void CompleteActiveQuest()
+    public void CompleteActiveQuest()
     {
         if (activeQuest != null)
         {
@@ -84,6 +102,19 @@ public class QuestManager : MonoBehaviour
             yield return null;
         }
         textMeshPro.color = fadedColor;
+    }
+
+    public void OpenQuestMenu()
+    {
+        if(questPanel.activeInHierarchy)
+        {
+            questPanel.SetActive(false);
+        } 
+        else
+        {
+            questPanel.SetActive(true);
+        }
+
     }
 }
 

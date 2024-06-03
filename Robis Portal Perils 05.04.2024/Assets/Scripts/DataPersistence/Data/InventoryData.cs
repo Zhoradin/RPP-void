@@ -16,6 +16,7 @@ public class InventoryData : MonoBehaviour, IDataPersistence
 
     private void Awake()
     {
+        
         if (instance != null)
         {
             Destroy(gameObject);
@@ -61,7 +62,7 @@ public class InventoryData : MonoBehaviour, IDataPersistence
 
     private void Start()
     {
-        
+        inventorySO.OnInventoryUpdated += UpdateInventoryItems;
     }
     private void OnEnable()
     {

@@ -9,8 +9,7 @@ namespace Inventory
     public class InventoryController : MonoBehaviour
     {
         public GameObject InventoryIcon;
-        public GameObject InventoryIconSelected;
-        public static InventoryController Instance { get; private set; }
+        public static InventoryController instance;
 
         [SerializeField]
         private UIInventoryPage inventoryUI;
@@ -22,13 +21,13 @@ namespace Inventory
 
         private void Awake()
         {
-            if (Instance != null && Instance != this)
+            if (instance != null && instance != this)
             {
                 Destroy(gameObject);
                 return;
             }
 
-            Instance = this;
+            instance = this;
             DontDestroyOnLoad(gameObject);
         }
 
@@ -37,8 +36,7 @@ namespace Inventory
             SceneManager.sceneLoaded += OnSceneLoaded;
             PrepareUI();
             PrepareInventoryData();
-            InventoryIconSelected.SetActive(false);
-            CheckSceneAndSetActive();
+            //CheckSceneAndSetActive();
         }
 
         private void PrepareInventoryData()
@@ -107,7 +105,7 @@ namespace Inventory
             inventoryUI.UpdateDescription(itemIndex, item.ItemImage, item.Name, item.Description);
         }
 
-        private void CheckSceneAndSetActive()
+        /*private void CheckSceneAndSetActive()
         {
             // Eðer sahne adý MainMenu ise nesneyi deaktif et
             if (SceneManager.GetActiveScene().name == "MainMenu")
@@ -119,12 +117,12 @@ namespace Inventory
             {
                 gameObject.SetActive(true);
             }
-        }
+        }*/
 
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
             // Eklenen kýsým
-            CheckSceneAndSetActive();
+            //CheckSceneAndSetActive();
 
             GameObject uiInventoryPageObj = GameObject.Find("UIInventoryPage");
             if (uiInventoryPageObj != null)
@@ -139,22 +137,6 @@ namespace Inventory
             if (Input.GetKeyDown(KeyCode.I))
             {
                 ToggleInventoryUI();
-            }
-
-            if (InventoryIcon != null && RectTransformUtility.RectangleContainsScreenPoint(
-                InventoryIcon.GetComponent<RectTransform>(), Input.mousePosition))
-            {
-                if (InventoryIconSelected != null)
-                {
-                    InventoryIconSelected.SetActive(true);
-                }
-            }
-            else
-            {
-                if (InventoryIconSelected != null)
-                {
-                    InventoryIconSelected.SetActive(false);
-                }
             }
         }
 

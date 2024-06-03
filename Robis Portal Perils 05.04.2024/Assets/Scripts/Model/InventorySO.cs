@@ -6,10 +6,9 @@ using UnityEngine;
 
 namespace Inventory.Model
 {
-    [CreateAssetMenu]
+    [CreateAssetMenu(fileName = "InventorySO", menuName = "ScriptableObjects/InventorySO", order = 1)]
     public class InventorySO : ScriptableObject
     {
-        [SerializeField]
         public List<InventoryItem> inventoryItems;
 
         [field: SerializeField]

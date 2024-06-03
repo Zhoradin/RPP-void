@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class PickUpSystem : MonoBehaviour
 {
-    [SerializeField]
-    private InventorySO inventoryData;
+    public InventorySO inventoryData;
+
+    public GeneralManagerSO generalManagerSO;
 
     private Item itemToPickUp;
 
@@ -26,6 +27,10 @@ public class PickUpSystem : MonoBehaviour
         {
             // Eþyanýn ItemSO'daki itemID'sini al
             int itemIDToAdd = itemToPickUp.InventoryItem.ItemID;
+
+            string itemNameToAdd = itemToPickUp.InventoryItem.Name;
+
+            generalManagerSO.CheckItemName(itemNameToAdd);
 
             // ItemDestroyer örneðine itemID'yi ekle
             ItemDestroyer itemDestroyer = ItemDestroyer.GetInstance();

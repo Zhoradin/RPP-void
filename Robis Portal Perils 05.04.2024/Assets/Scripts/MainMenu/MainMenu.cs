@@ -22,10 +22,15 @@ public class MainMenu : Menu
 
     private void DisableButtonsDependingOnData()
     {
-        if (!DataPersistenceManager.instance.HasGameData())
+        if (DataPersistenceManager.instance.HasGameData() == false)
         {
             continueGameButton.interactable = false;
             loadGameButton.interactable = false;
+        }
+        else
+        {
+            continueGameButton.interactable = true;
+            loadGameButton.interactable = true;
         }
     }
 

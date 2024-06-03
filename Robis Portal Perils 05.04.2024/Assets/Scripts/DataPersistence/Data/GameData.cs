@@ -21,7 +21,7 @@ public class GameData
         playerPosition = Vector3.zero;
         currentSceneName = "";
     }
-    public void OnButtonClicked(GameObject clickedObject)
+    /*public void OnButtonClicked(GameObject clickedObject)
     {
         Image clickedImage = clickedObject.GetComponent<Image>();
         if (clickedImage != null)
@@ -38,5 +38,5 @@ public class GameData
                 }
             }
         }
-    }
+    }*/
 }
