@@ -113,7 +113,7 @@ public class DialogueManager : MonoBehaviour
         dialogueText.text = "";
 
         // Notify KarlManager that the dialogue has ended
-        karlManager?.OnDialogueEnd(); // OnDialogueEnd'i burada çaðýrmayalým
+        karlManager?.OnDialogueEnd(); // OnDialogueEnd'i burada ï¿½aï¿½ï¿½rmayalï¿½m
     }
 
     private void ContinueStory()
