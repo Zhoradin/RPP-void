@@ -13,6 +13,8 @@ public class QuestManager : MonoBehaviour
         instance = this;
     }
 
+    public GeneralManagerSO generalManagerSO;
+
     public List<QuestList> questLists = new List<QuestList>();
 
     // TemporaryButton isimli buton buraya atanacak
@@ -79,15 +81,20 @@ public class QuestManager : MonoBehaviour
 
     public void CompleteActiveQuest()
     {
-        if (activeQuest != null)
+        if (activeQuest != null && activeQuest.questName == generalManagerSO.itemKey && activeQuest.triggerType == Quest.QuestType.item)
         {
-            activeQuest.isCompleted = true;
-            // Eðer activeQuest'in textMeshPro'sý varsa, görünürlüðünü ayarla ve textini deðiþtir
-            if (activeQuest.textMeshPro != null)
+            if (generalManagerSO.questTrigger == true)
             {
-                StartCoroutine(FadeText(activeQuest.textMeshPro));
+                Debug.Log(generalManagerSO.itemKey);
+                activeQuest.isCompleted = true;
+                // Eðer activeQuest'in textMeshPro'sý varsa, görünürlüðünü ayarla ve textini deðiþtir
+                if (activeQuest.textMeshPro != null)
+                {
+                    StartCoroutine(FadeText(activeQuest.textMeshPro));
+                }
+                SetActiveQuest(); // Aktif görevi tamamladýktan sonra bir sonraki aktif görevi belirle
             }
-            SetActiveQuest(); // Aktif görevi tamamladýktan sonra bir sonraki aktif görevi belirle
+            
         }
     }
 
@@ -131,4 +138,6 @@ public class Quest
     public string questName;
     public TextMeshProUGUI textMeshPro;
     public bool isCompleted;
+    public enum QuestType { item, dialogue}
+    public QuestType triggerType;
 }

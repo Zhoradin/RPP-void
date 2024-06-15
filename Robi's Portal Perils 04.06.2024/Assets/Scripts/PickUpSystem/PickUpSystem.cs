@@ -10,6 +10,8 @@ public class PickUpSystem : MonoBehaviour
 
     private Item itemToPickUp;
 
+    public GeneralManagerSO generalManagerSO;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         itemToPickUp = collision.GetComponent<Item>();
@@ -26,6 +28,9 @@ public class PickUpSystem : MonoBehaviour
         {
             // Eþyanýn ItemSO'daki itemID'sini al
             int itemIDToAdd = itemToPickUp.InventoryItem.ItemID;
+            string itemNameToAdd = itemToPickUp.InventoryItem.Name;
+
+            generalManagerSO.CheckItemName(itemNameToAdd);
 
             // ItemDestroyer örneðine itemID'yi ekle
             ItemDestroyer itemDestroyer = ItemDestroyer.GetInstance();

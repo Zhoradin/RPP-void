@@ -1614,6 +1614,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DataPersistenceManager
       objectReference: {fileID: 0}
+    - target: {fileID: 5740106267328233199, guid: 74618d2f2239ccb448a83d7eb93e0418, type: 3}
+      propertyPath: disableDataPersistence
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5740106267328233200, guid: 74618d2f2239ccb448a83d7eb93e0418, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -1787,6 +1791,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryData: {fileID: 11400000, guid: 6934b667ed730b241a26d38691fc6eb2, type: 2}
+  generalManagerSO: {fileID: 11400000, guid: bc4182a7f57ed634d8bbf29d95da6ca1, type: 2}
 --- !u!4 &2091518855 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9057275899539823390, guid: 7059e975202934340a79cde879c7721e, type: 3}
@@ -1938,6 +1943,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Quest System
       objectReference: {fileID: 0}
+    - target: {fileID: 6352869131900045046, guid: e454faea68b9f714290ef14a32891f80, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6352869131900045051, guid: e454faea68b9f714290ef14a32891f80, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -2021,6 +2030,14 @@ PrefabInstance:
     - target: {fileID: 6352869131900045051, guid: e454faea68b9f714290ef14a32891f80, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6352869133920515405, guid: e454faea68b9f714290ef14a32891f80, type: 3}
+      propertyPath: m_Name
+      value: Dumbell
+      objectReference: {fileID: 0}
+    - target: {fileID: 6352869133920515408, guid: e454faea68b9f714290ef14a32891f80, type: 3}
+      propertyPath: m_text
+      value: Dumbell
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e454faea68b9f714290ef14a32891f80, type: 3}

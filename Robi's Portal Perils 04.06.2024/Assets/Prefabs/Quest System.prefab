@@ -230,23 +230,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa97c6a57d7329341923a51eec9d197f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  generalManagerSO: {fileID: 11400000, guid: bc4182a7f57ed634d8bbf29d95da6ca1, type: 2}
   questLists:
   - listName: Quest1
     quests:
-    - questName: "Dumbell\u0131 Al"
+    - questName: Dumbell
       textMeshPro: {fileID: 6352869133920515408}
       isCompleted: 0
-    - questName: "\xDCst\xFCn\xFC Giy"
+      triggerType: 0
+    - questName: Kipat
       textMeshPro: {fileID: 6352869133090907368}
       isCompleted: 0
+      triggerType: 0
   - listName: Quest2
     quests:
     - questName: "Sa\xE7\u0131n\u0131 Tara"
       textMeshPro: {fileID: 6352869131931288612}
       isCompleted: 0
+      triggerType: 0
     - questName: "Di\u015Fini F\u0131r\xE7ala"
       textMeshPro: {fileID: 6352869132867035185}
       isCompleted: 0
+      triggerType: 0
   temporaryButton: {fileID: 6352869132202014403}
   textSpeed: 0.05
   questPanel: {fileID: 6352869133308725884}
