@@ -32,6 +32,7 @@ public class QuestManager : MonoBehaviour
     void Start()
     {
         questPanel.SetActive(false);
+        CopyQuestListsToSO(); // Listeyi GeneralManagerSO'ya kopyala
         SetActiveQuest(); // Baþlangýçta aktif görevi belirle
     }
 
@@ -122,6 +123,11 @@ public class QuestManager : MonoBehaviour
             questPanel.SetActive(true);
         }
 
+    }
+
+    public void CopyQuestListsToSO()
+    {
+        generalManagerSO.questLists = new List<QuestList>(questLists);
     }
 }
 

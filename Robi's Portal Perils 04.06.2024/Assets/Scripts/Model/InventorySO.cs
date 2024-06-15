@@ -9,7 +9,6 @@ namespace Inventory.Model
     [CreateAssetMenu]
     public class InventorySO : ScriptableObject
     {
-        [SerializeField]
         public List<InventoryItem> inventoryItems;
 
         [field: SerializeField]

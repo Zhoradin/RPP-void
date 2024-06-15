@@ -10,6 +10,8 @@ public class GeneralManagerSO : ScriptableObject
     public bool questTrigger;
     public string itemKey;
 
+    public List<QuestList> questLists;
+
     void Start()
     {
 
@@ -31,6 +33,8 @@ public class GeneralManagerSO : ScriptableObject
         Debug.Log(itemKey + " is set to " + itemDictionary[itemKey]);
 
         questTrigger = itemDictionary[itemName];
+
+        QuestManager.instance.CompleteActiveQuest();
     }
 
     public bool IsItemAdded(string itemName)
