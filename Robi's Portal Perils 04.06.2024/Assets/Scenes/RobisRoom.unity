@@ -1616,7 +1616,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5740106267328233199, guid: 74618d2f2239ccb448a83d7eb93e0418, type: 3}
       propertyPath: disableDataPersistence
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5740106267328233200, guid: 74618d2f2239ccb448a83d7eb93e0418, type: 3}
       propertyPath: m_RootOrder
